@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
+    <script src="https://yastatic.net/s3/passport-sdk/autofill/v1/sdk-suggest-with-polyfills-latest.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="inner">
+        <div class="item">
+            <script>
+                window.onload = function() {
+                 window.YaAuthSuggest.init({
+                     client_id: 'c46f0c53093440c39f12eff95a9f2f93',
+                     response_type: 'token',
+                     redirect_uri: 'https://examplesite.com/suggest/token'
+                     },
+                     'https://examplesite.com'
+                 )
+                 .then(function(result) {
+                    return result.handler()
+                 })
+                 .then(function(data) {
+                    console.log('Сообщение с токеном: ', data);
+                    document.body.innerHTML += `Сообщение с токеном: ${JSON.stringify(data)}`;
+                 })
+                 .catch(function(error) {
+                    console.log('Что-то пошло не так: ', error);
+                    document.body.innerHTML += `Что-то пошло не так: ${JSON.stringify(error)}`;
+                 });
+               };
+            </script>
+        </div>
+    </div>
+</div>
+</body>
+</html>
